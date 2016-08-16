@@ -1,0 +1,8 @@
+<resources>
+	<string name="app_name">Prime Patrol</string>
+	<string name="username_hint">Who are you?</string>
+	<string name="btn_submit_username">Start</string>
+	<string name="btn_next">Next</string>
+	<string name="btn_submit_yes">Yes</string>
+	<string name="btn_submit_no">No</string>
+</resources>
