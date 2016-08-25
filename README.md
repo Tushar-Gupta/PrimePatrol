@@ -1,5 +1,5 @@
 # PrimePatrol
-Mobile Computing -- Assignment 1
+Mobile Computing -- Assignment 2
 
 Instructor: Dr. Pushependra Singh |
 TA: Hiya Popli |
