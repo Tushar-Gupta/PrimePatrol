@@ -9,26 +9,40 @@
     </style>
 
 	<style name="Button.Start" parent="Widget.AppCompat.Button">
-		<item name="colorButtonNormal">#e67e22</item>
-		<item name="colorControlHighlight">#595959</item>
-		<item name="android:textColor">#595959</item> </style>
+		<item name="android:padding">0dp</item>
+		<item name="colorButtonNormal">#3E5C76</item>
+		<item name="colorControlHighlight">#ffffff</item>
+		<item name="android:textColor">#F0EBD8</item> </style>
 
 	<style name="Button.Yes" parent="Widget.AppCompat.Button">
 		<item name="android:padding">0dp</item>
-		<item name="colorButtonNormal">#51894e</item>
-		<item name="colorControlHighlight">#595959</item>
-		<item name="android:textColor">#595959</item> </style>
+		<item name="colorButtonNormal">#3E5C76</item>
+		<item name="colorControlHighlight">#ffffff</item>
+		<item name="android:textColor">#F0EBD8</item>
+	</style>
 
 	<style name="Button.No" parent="Widget.AppCompat.Button">
 		<item name="android:padding">0dp</item>
-		<item name="colorButtonNormal">#7dbbe6</item>
-		<item name="colorControlHighlight">#595959</item>
-		<item name="android:textColor">#595959</item> </style>
+		<item name="colorButtonNormal">#3E5C76</item>
+		<item name="colorControlHighlight">#ffffff</item>
+		<item name="android:textColor">#F0EBD8</item> </style>
 
 	<style name="Button.Next" parent="Widget.AppCompat.Button">
 		<item name="android:padding">0dp</item>
-		<item name="colorButtonNormal">#e6af7d</item>
-		<item name="colorControlHighlight">#595959</item>
-		<item name="android:textColor">#595959</item> </style>
+		<item name="colorButtonNormal">#748CAB</item>
+		<item name="colorControlHighlight">#ffffff</item>
+		<item name="android:textColor">#1D2D44</item> </style>
+
+	<style name="Button.Cheat" parent="Widget.AppCompat.Button">
+		<item name="android:padding">0dp</item>
+		<item name="colorButtonNormal">#748CAB</item>
+		<item name="colorControlHighlight">#ffffff</item>
+		<item name="android:textColor">#1D2D44</item> </style>
+
+	<style name="Button.Hint" parent="Widget.AppCompat.Button">
+		<item name="android:padding">0dp</item>
+		<item name="colorButtonNormal">#748CAB</item>
+		<item name="colorControlHighlight">#ffffff</item>
+		<item name="android:textColor">#1D2D44</item> </style>
 
 </resources>

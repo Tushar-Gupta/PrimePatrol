@@ -13,7 +13,7 @@ android:background="@color/colorAppBackground"
 		android:layout_height="wrap_content"
 		android:hint="@string/username_hint"
 		android:textColor="#ffffff"
-		android:textColorHint="#444444"/>
+		android:textColorHint="#748CAB"/>
 	<Button
 		android:textSize="20sp"
 		android:theme="@style/Button.Start"
