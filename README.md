@@ -2,7 +2,7 @@
 Mobile Computing -- Assignment 1 & 2
 
 Instructor: Dr. Pushependra Singh |
-TA: Hiya Popli |
+TA: Hiya Popli, Garima Chhikara |
 Student: Tushar Gupta | 
 Roll: 2013113, IIIT Delhi
 
