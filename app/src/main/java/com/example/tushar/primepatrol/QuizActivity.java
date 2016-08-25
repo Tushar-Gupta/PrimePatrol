@@ -2,11 +2,11 @@ package com.example.tushar.primepatrol;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,8 +15,9 @@ import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
 	protected int currentNumber;
-	protected int hintScene;
-	protected int cheatScene;
+	protected int hintSeen;
+	protected int cheatSeen;
+	protected String userName;
 	//checks whether an int is prime or not.
 	protected int isPrime(int n) {
 		//check if n is a multiple of 2
@@ -29,33 +30,33 @@ public class QuizActivity extends AppCompatActivity {
 		return 1;
 	}
 
-	protected void showGreeting(String greetingString)
+	protected void showGreeting()
 	{
 		TextView greetingTextView = (TextView) findViewById(R.id.greetingTextView);
-		greetingString = "Hello " + greetingString + ",";
-		greetingTextView.setText(greetingString);
+		greetingTextView.setText("Hello " + this.userName + ",");
 	}
 
 	protected void showFirstQuestion()
     {
-		((Button) findViewById(R.id.button_hint)).setText("Hint");
-		((Button) findViewById(R.id.button_cheat)).setText("Cheat");
-        TextView questionTextView = (TextView) findViewById(R.id.questionTextView);
-        questionTextView.setTextSize(30);
-        Random rand = new Random();
-        int  generatedNumber = rand.nextInt(1000) + 1;
-        String questionString = "Is " + Integer.toString(generatedNumber) + " prime?";
-        questionTextView.setText(questionString);
-		this.currentNumber = generatedNumber;
-		this.hintScene = 0;
-		this.cheatScene = 0;
+			((Button) findViewById(R.id.button_hint)).setText("Hint");
+			((Button) findViewById(R.id.button_cheat)).setText("Cheat");
+			TextView questionTextView = (TextView) findViewById(R.id.questionTextView);
+			questionTextView.setTextSize(30);
+			Random rand = new Random();
+			int generatedNumber = rand.nextInt(1000) + 1;
+			String questionString = "Is " + Integer.toString(generatedNumber) + " prime?";
+			questionTextView.setText(questionString);
+			this.currentNumber = generatedNumber;
+			this.hintSeen = 0;
+			this.cheatSeen = 0;
+
     }
 
 
 	public void nextQuestion(View view)
 	{
-		this.hintScene = 0;
-		this.cheatScene = 0;
+		this.hintSeen = 0;
+		this.cheatSeen = 0;
 		((Button) findViewById(R.id.button_hint)).setEnabled(true);
 		((Button) findViewById(R.id.button_cheat)).setEnabled(true);
 		((Button) findViewById(R.id.button_hint)).setText("Hint");
@@ -77,12 +78,48 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         Intent intent = getIntent();
-//        ViewGroup layout = (ViewGroup) findViewById(R.id.activity_quiz);
+
 		//get the username from previous activity and show a greeting message
-		showGreeting(intent.getStringExtra(MainActivity.USER_NAME));
+		this.userName = intent.getStringExtra(MainActivity.USER_NAME);
+		showGreeting();
         //generate the question
 		showFirstQuestion();
     }
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig){
+		super.onConfigurationChanged(newConfig);
+		setContentView(R.layout.activity_quiz);
+
+		showGreeting();
+
+		if ( this.hintSeen == 1 )
+		{
+			((Button) findViewById(R.id.button_hint)).setEnabled(false);
+			((Button) findViewById(R.id.button_hint)).setText("Hint Used");
+		}
+		else
+		{
+			((Button) findViewById(R.id.button_hint)).setEnabled(true);
+			((Button) findViewById(R.id.button_hint)).setText("Hint");
+		}
+		if ( this.cheatSeen == 1 )
+		{
+			((Button) findViewById(R.id.button_cheat)).setEnabled(false);
+			((Button) findViewById(R.id.button_cheat)).setText("Cheat Used");
+		}
+		else
+		{
+			((Button) findViewById(R.id.button_cheat)).setEnabled(true);
+			((Button) findViewById(R.id.button_cheat)).setText("Cheat");
+		}
+		TextView questionTextView = (TextView) findViewById(R.id.questionTextView);
+		questionTextView.setTextSize(30);
+		int generatedNumber = this.currentNumber;
+		String questionString = "Is " + Integer.toString(generatedNumber) + " prime?";
+		questionTextView.setText(questionString);
+	}
+
 
 
 	//called when yes/no is pressed
@@ -132,9 +169,9 @@ public class QuizActivity extends AppCompatActivity {
 		Button button_hint = ((Button) findViewById(R.id.button_hint));
 		button_hint.setEnabled(false);
 		button_hint.setText("Hint Used");
-		if ( this.hintScene == 0 )
+		if ( this.hintSeen == 0 )
 		{
-			this.hintScene = 1;
+			this.hintSeen = 1;
 			Intent intent = new Intent(this, HintActivity.class);
 			intent.putExtra("CURRENT_NUMBER", this.currentNumber);
 			startActivity(intent);
@@ -147,9 +184,9 @@ public class QuizActivity extends AppCompatActivity {
 		Button button_cheat = ((Button) findViewById(R.id.button_cheat));
 		button_cheat.setEnabled(false);
 		button_cheat.setText("Cheat Used");
-		if ( this.cheatScene == 0 )
+		if ( this.cheatSeen == 0 )
 		{
-			this.cheatScene = 1;
+			this.cheatSeen = 1;
 			Intent intent = new Intent(this, CheatActivity.class);
 			if ( isPrime(this.currentNumber) == 1 )
 			{
